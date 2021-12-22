@@ -3,7 +3,7 @@ Dopo 30 secondi l’utente deve inserire, uno alla volta, i numeri che ha visto 
 Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati. */
 
 let ar = [];
-score = 0;
+let score = 0;
 
 function genNumber(inf,sup){
     return Math.floor(Math.random()*(sup-inf+1)+inf);
