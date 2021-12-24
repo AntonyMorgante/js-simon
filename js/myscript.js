@@ -77,10 +77,16 @@ function endGame(){
     playButton.innerHTML = "Comincia una nuova partita"
 }
 
+function newGameValues (){
+    gameIsOn = 1;
+    score = 0;
+    time = 5;
+    ar = [];
+}
+
 function createGame(){
     if (!gameIsOn){
-        gameIsOn = 1;
-        time = 5;
+        newGameValues();
         let countdownBox = document.getElementById("countdown");
         countdownBox.innerHTML = time;
         period = setInterval(countdown, 1000);
