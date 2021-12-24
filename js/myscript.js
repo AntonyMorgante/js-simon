@@ -4,6 +4,9 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 
 let ar = [];
 let score = 0;
+let time = 5;
+let period;
+let gameIsOn = 0;
 
 function genNumber(inf,sup){
     return Math.floor(Math.random()*(sup-inf+1)+inf);
@@ -54,18 +57,41 @@ function askNumbers(array){
     }
 }
 
+function countdown(){
+    time--;
+    let countdownBox = document.getElementById("countdown");
+    countdownBox.innerHTML = time;
+}
+
+function clearCountdown(){
+    let countdownBox = document.getElementById("countdown");
+    countdownBox.innerHTML = "";
+    clearInterval(period);
+}
+
 function endGame(){
     askNumbers(ar);
     let numberBox = document.getElementById("number-box");
     numberBox.innerHTML = "La tua partita è finita! Il tuo punteggio è: " + score + ".<br>Gioca di nuovo per provare a migliorare il tuo risultato!";
+    gameIsOn = 0;
+    playButton.innerHTML = "Comincia una nuova partita"
 }
 
 function createGame(){
-    clearNumbers();
-    createNumberArray(5); 
-    writeNumbers(ar);
-    const clearTime = setTimeout(clearNumbers,29900);
-    const questionTime = setTimeout(endGame,30000);
+    if (!gameIsOn){
+        gameIsOn = 1;
+        time = 5;
+        let countdownBox = document.getElementById("countdown");
+        countdownBox.innerHTML = time;
+        period = setInterval(countdown, 1000);
+        clearNumbers();
+        createNumberArray(5); 
+        writeNumbers(ar);
+        const clearCount = setTimeout(clearCountdown,4900);
+        const clearTime = setTimeout(clearNumbers,4900);
+        const questionTime = setTimeout(endGame,5000);
+        playButton.innerHTML = "Partita in corso..."
+    }
 }
 
 const playButton = document.getElementById("play-button")
