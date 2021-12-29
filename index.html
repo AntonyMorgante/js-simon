@@ -8,12 +8,21 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Dai i numeri?</h1>
-    <div>
-        <button id="play-button">Comincia a giocare</button>
-    </div>
-    <div id="number-box"></div>
-    <div id="countdown"></div>
+    <header>
+        <p>Dai i numeri?</p>
+    </header>
+    <main>
+        <div class="container">
+            <div id="gamevalues">
+                <input id="time" type="number" placeholder="Tempo" min="5" max="60">
+                <input id="numbers" type="number" placeholder="Numeri" min="5" max="20">
+                <input id="sup" type="number" placeholder="Valore massimo" min="10" max="">
+                <button id="play-button">Comincia a giocare</button>
+            </div>
+            <div id="number-box"></div>
+            <div id="countdown"></div>
+        </div>
+    </main>
     <script type="text/javascript" src="js/myscript.js"></script>
 </body>
 </html>

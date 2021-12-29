@@ -4,7 +4,7 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 
 let ar = [];
 let score = 0;
-let time = 30;
+let time = 0;
 let period;
 let gameIsOn = 0;
 
@@ -13,8 +13,12 @@ function genNumber(inf,sup){
 }
 
 function createNumberArray(number){
+    let sup = parseInt(document.getElementById("sup").value);
+    if (isNaN(sup)){
+        sup = 99;
+    }
     do {
-        n = genNumber(0,99); /* meglio farli generici */
+        n = genNumber(0,sup); 
         let nIsUnique = true; 
         for (let i=0; i<ar.length; i++){
             if (ar[i] == n){ 
@@ -105,16 +109,23 @@ function endGame(){
 function newGameValues (){
     gameIsOn = 1;
     score = 0;
-    time = 30;
+    time = parseInt(document.getElementById("time").value);
+    if (isNaN(time)){
+        time = 30;
+    }
     ar = [];
 }
 
 function createGame(){
+    let numbers = parseInt(document.getElementById("numbers").value);
+    if (isNaN(numbers)){
+        numbers = 5;
+    }
     if (!gameIsOn){
         newGameValues();
         initiateCountdown();
         clearNumbers();
-        createNumberArray(5); 
+        createNumberArray(numbers); 
         writeNumbers(ar);
         const clearCount = setTimeout(clearCountdown,29900);
         const clearTime = setTimeout(clearNumbers,29900);
