@@ -98,7 +98,11 @@ function clearCountdown(){
 }
 
 function endGame(){
-    let answers = createAnswersArray(5);
+    let numbers = parseInt(document.getElementById("numbers").value);
+    if (isNaN(numbers)){
+        numbers = 5;
+    }
+    let answers = createAnswersArray(numbers);
     confrontAnswers(ar,answers);
     let numberBox = document.getElementById("number-box");
     numberBox.innerHTML = "La tua partita è finita! Il tuo punteggio è: " + score + ".<br>Gioca di nuovo per provare a migliorare il tuo risultato!";
@@ -127,9 +131,9 @@ function createGame(){
         clearNumbers();
         createNumberArray(numbers); 
         writeNumbers(ar);
-        const clearCount = setTimeout(clearCountdown,29900);
-        const clearTime = setTimeout(clearNumbers,29900);
-        const questionTime = setTimeout(endGame,30000);
+        const clearCount = setTimeout(clearCountdown,(time*1000)-100);
+        const clearTime = setTimeout(clearNumbers,(time*1000)-100);
+        const questionTime = setTimeout(endGame,time*1000);
         playButton.innerHTML = "Partita in corso..."
     }
 }
