@@ -1,18 +1,14 @@
-/* Visualizzare in pagina 5 numeri casuali. Da lì parte un timer di 30 secondi.
-Dopo 30 secondi l’utente deve inserire, uno alla volta, i numeri che ha visto precedentemente, tramite il prompt().
-Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati. */
-
 let ar = [];
 let score = 0;
 let time = 0;
 let period;
 let gameIsOn = 0;
 
-function genNumber(inf,sup){
+function genNumber(inf,sup){ /* generates a casual integer between (inf+1) and sup */
     return Math.floor(Math.random()*(sup-inf+1)+inf);
 }
 
-function createNumberArray(number){
+function createNumberArray(number){ /* adds random unique integers to ar until the array is of the desired length */
     let sup = parseInt(document.getElementById("sup").value);
     if (isNaN(sup)){
         sup = 99;
@@ -32,12 +28,12 @@ function createNumberArray(number){
     } while (ar.length < number)
 }
 
-function clearNumbers(){
+function clearNumbers(){ /* removes the numbers from screen once time ends */
     let numberBox = document.getElementById("number-box");
     numberBox.innerHTML = "";
 }
 
-function writeNumbers(array){
+function writeNumbers(array){ /* writes the numbers to memorise on screen */
     clearNumbers();
     let numberBox = document.getElementById("number-box");
     for (let i=0; i<array.length;i++){
@@ -50,7 +46,7 @@ function writeNumbers(array){
     }
 }
 
-function createAnswersArray(number){
+function createAnswersArray(number){ /* ask the player unique answers and puts them into an array */
     let answers = [];
     do {
         n = parseInt(prompt("Inserisci uno dei numeri che erano visualizzati sullo schermo"))
@@ -69,7 +65,7 @@ function createAnswersArray(number){
     return answers;
 }
 
-function confrontAnswers(array1,array2){
+function confrontAnswers(array1,array2){ /* confronts two arrays and finds how many elements coincide */
     for (let i=0;i<array1.length;i++){
         for (let j=0;j<array2.length;j++){
             if (array1[i]==array2[j]){
